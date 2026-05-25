@@ -1,0 +1,26 @@
+虽然目前是成功的让代码跑了起来，目前初步具备雏形，但是明显能感受到多个专家的处理目前是非常混乱的。
+Although the code runs successfully and a preliminary prototype is in place, it's clear that the coordination among multiple experts is currently quite messy.
+
+我的问题是“感冒了请病假被拒绝”，AI选择用医学大脑做主体输出，这个结果不尽人意。
+My question was: "I have a cold and my request for sick leave was denied." The AI chose to respond using the medical expert as the main output, which is far from ideal.
+
+尽管是给出了非常详细的建议，但我的问题的侧重点是“请病假被拒绝”。所以后续的优化应该是在两个专家大脑做出回答后，如何整合再做出回答。
+Although it gave very detailed suggestions, the core issue of my question was "sick leave denied." Therefore, future optimization should focus on how to integrate the answers from two (or more) expert brains before producing a final response.
+
+同时，目前还是使用的内置专家大脑，今后技术精进后，会尽可能的去往“外置大脑”方向去发展。
+Also, the current implementation still uses built-in expert brains. As my skills improve, I will move toward developing external brains as much as possible.
+
+安全大脑测试通过，目前是正常生效的，今后会慢慢把安全大脑单独拉出来成立一个整体。同时，安全大脑需要的功能也会慢慢优化。
+The safety brain has passed testing and is working normally. In the future, I will gradually extract it into an independent module, and its required functionality will be steadily enhanced.
+
+好了，今天的结果就是这样了（2026-5-26）
+That's the result for today (2026-05-26).
+
+
+
+
+
+
+
+
+
