@@ -8,9 +8,10 @@
 
 市面上的多智能体偏向“功能”，很少考虑“安全”。所以我希望设计一个‘外置安全大脑’：独立运行、不被主逻辑绕过、可插拔、可备份。这个MVP就是该思路的验证。
 
-## 当前进展（2026-05-25）
+## 当前进展（2026-05-26）
 1.Python学习（变量、循环、函数、字典、集合）
 2.尝试搭建AI（目前为雏形，日后继续更新）
+3.觉得自己搭建AI并不熟练，试着重新写了一遍，一些部分做了微小的改动，并更详细的添加了注释。
 
 ## 未来计划
 1. 完成MVP（安全监测 + 双专家）
@@ -45,9 +46,10 @@ In June 2025, I was first exposed to an Agent course, and some strange ideas pop
 
 Most multi-agent frameworks focus on “functionality” and rarely consider “safety”. Therefore, I want to design an **external safety brain**: independent, cannot be bypassed by the main logic, pluggable, and backup-friendly. This MVP is the verification of that idea.
 
-## Current Progress (2026-05-25)
+## Current Progress (2026-05-26)
 1. Python basics learned (variables, loops, functions, dicts, sets)
 2.Attempted to build an AI (currently a prototype, to be continued)
+3.I feel that I am not proficient in building AI. I tried to rewrite it, made some minor changes to some parts, and added more detailed comment。。
 ## Future Plans
 1. Complete MVP (safety monitoring + dual experts)
 2. Add a web interface for easy demonstration
