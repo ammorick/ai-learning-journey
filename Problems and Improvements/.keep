@@ -1,0 +1,44 @@
+虽然目前是成功的让代码跑了起来，目前初步具备雏形，但是明显能感受到多个专家的处理目前是非常混乱的。
+Although the code runs successfully and a preliminary prototype is in place, it's clear that the coordination among multiple experts is currently quite messy.
+
+我的问题是“感冒了请病假被拒绝”，AI选择用医学大脑做主体输出，这个结果不尽人意。
+My question was: "I have a cold and my request for sick leave was denied." The AI chose to respond using the medical expert as the main output, which is far from ideal.
+
+尽管是给出了非常详细的建议，但我的问题的侧重点是“请病假被拒绝”。所以后续的优化应该是在两个专家大脑做出回答后，如何整合再做出回答。
+Although it gave very detailed suggestions, the core issue of my question was "sick leave denied." Therefore, future optimization should focus on how to integrate the answers from two (or more) expert brains before producing a final response.
+
+同时，目前还是使用的内置专家大脑，今后技术精进后，会尽可能的去往“外置大脑”方向去发展。
+Also, the current implementation still uses built-in expert brains. As my skills improve, I will move toward developing external brains as much as possible.
+
+安全大脑测试通过，目前是正常生效的，今后会慢慢把安全大脑单独拉出来成立一个整体。同时，安全大脑需要的功能也会慢慢优化。
+The safety brain has passed testing and is working normally. In the future, I will gradually extract it into an independent module, and its required functionality will be steadily enhanced.
+
+然后开始尝试了一下，首先把安全大脑模块化了，目前成功，可以正常使用
+Then I gave it a try. First, I modularized the Safety Brain. It worked and is now functioning properly.
+
+到API部分模块化时我考虑了一下，这个地方到底需不需要日后做微服务呢？
+When I got to modularizing the API part, I thought about whether this will need to become a microservice in the future.
+
+外置的好处是：响应空间独立，方便数据储存，精准性高，有互交空间，等等
+Benefits of an external approach: independent response space, convenient data storage, high precision, room for interaction, etc.
+
+但是坏处有：响应速度慢，处理复杂，等等
+Drawbacks: slower response speed, more complex processing, etc.
+
+不同网站的API，对不同行业的处理效果估计也不一样，比如Openai 的API，和现在拿的这个API，处理化工，医疗，金融，等等，效果估计就不一样
+Different APIs from different websites likely produce different results for different industries. For example, OpenAI's API vs the one I'm currently using – their effectiveness on chemicals, healthcare, finance, etc., probably varies.
+
+如果独立的API文件多了之后，响应速度会慢吗，因为如果是各个API的能力不同的话，那我是可以外置API，来控制成本，需要精细的就用精细的API，可以粗糙的就用粗糙的，反正什么适合就用什么，当然，有钱的话直接用最好的API，只写一个，也不用外置，感觉也行。
+If I have many independent API files
+will response speed slow down? Since different APIs have different capabilitie
+I could use external APIs to control costs – use a fine-tuned API when high precision is needed, and a rougher one when it's not
+Use whatever fits the task. Of course, if budget allows, just use the best API, write only one, no need for external orchestration – that would work too.
+
+如果外置API调用的话，比如要用多个专家大脑，如果是先调用医疗再调用金融，那耗时感觉就是两者之和了，但是如果能同时进行的话，那就几乎是等同于时间比较长的那个。
+If calling external APIs, for example using multiple expert brains: if you call the medical API first then the finance API, the total time would be the sum of both. But if they can run concurrently, the total time is roughly as long as the slower one.
+
+所以综合好处和坏处，方便以后可以调动多处API，以及多线程功能使用，我决定还是做模块化，以后改为微服务。
+So considering the pros and cons, and to make it easy to orchestrate multiple APIs and use multi‑threading in the future, I've decided to go with modularization now, and refactor into microservices later.
+
+好了，今天就到这里了。
+Alright, that's it for today.
