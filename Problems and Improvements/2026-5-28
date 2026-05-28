@@ -1,28 +1,85 @@
 昨天忘记上传了，在昨天已经完成了全部模块化，即除了主程序以外其他部分，全都拆卸了出去，期间也做了一个小优化。
+Yesterday, I forgot to upload. Yesterday, I completed full modularization, meaning all parts except the main program were extracted. During this process, I also made a small optimization.
+
 优化总监大脑的路由机制：从单选升级为多选，支持同时匹配多个专家（如医学+法律）；关键词匹配改用字典映射，提高可扩展性和可维护性。
+I optimized the routing mechanism of the director brain: upgraded from single-choice to multi-choice, supporting matching multiple experts simultaneously (e.g., medical + law); switched keyword matching to a dictionary mapping to improve scalability and maintainability.
+
 测试模块化后，程序是否能够正常运行，但是报错了，昨天把专家的索取从单向变成了多项，如["medical","law"],然后返还给main的是一个列表，main就运行失败了。目前已修改，对每个专家类型分别获取提示词、调用 AI，最后汇总结果。最后顺利跑通
+After testing the modularized program to see if it could run normally, an error occurred. Yesterday, I changed the expert selection from single to multiple (e.g., ["medical","law"]), returning a list to main, which caused main to fail
+I have now fixed it: for each expert type, I retrieve the prompt, call the AI, and finally aggregate the results. The program now runs smoothly.
+
 emmm做完模块化后，我在选择下一步时，我筛选了几个方向：
+After finishing modularization, when choosing the next steps, I considered several directions:
+
 1.优化安全大脑方向→让安全大脑微服务化；增加输出安全检查；改变安全大脑的底层语言，不单一采用某个国家的语言；优化安全大脑的敏感词汇，或许可以引用动态的词汇，也可以尝试敏感词记忆。
+1.Optimize the safety brain: make it into a microservice; add output safety checks; change the underlying language of the safety brain to not rely on a single country’s language; optimize sensitive vocabulary, possibly using dynamic words; also try sensitive word memory.
+
 2.优化总监大脑→能够有效地归纳专家大脑的答案，让回答更准确，如之前的感冒请假示例；
+2.Optimize the director brain: effectively summarize the answers from expert brains to make responses more accurate, as in the earlier example of taking sick leave for a cold.
+
 3.逐步将专家大脑拆分成微服务→目前只是伪多大脑，只有形成微服务后，才是真正的多大脑
+3.Gradually split expert brains into microservices: currently it's only pseudo-multi-brain; only after forming microservices will it be truly multi-brain.
+
 4.做多大脑响应→目前的模块化是相当于串行功能，如果需要他们可以对话，那就需要并行功能
+4.Implement multi-brain response: currently modularization is like serial execution; if they need to converse, parallel execution is required.
+
 我认为，我们模型最终导向是“多大脑对话+安全大脑外置（以及一系列检测机制）“，所以我们目前是只做了模块化，但是谈不上是多大脑。
+I believe the ultimate goal of our model is "multi-brain conversation + safety brain externalization (and a series of monitoring mechanisms)". So far, we have only done modularization, which is not yet multi-brain.
+
 所以以最终结果为导向的话，应该先做“多大脑”，各个专家也好，或是普通的Agent也好，首先要实现它们的对话，然后才能考虑安全大脑的同步检测功能，同时才能考虑安全大脑的信息储存以及优化。
+Therefore, oriented toward the final goal, we should first work on "multi-brain". Whether they are experts or ordinary agents, we must first achieve their conversation, and only then consider the safety brain's synchronous detection, storage, and optimization.
+
 安全大脑其实也是核心机制，并且是相当重要的核心，但我主担心如果先做安全大脑，万一后面把各个专家大脑分离出去，原有的安全手段失效了的话，那就等于白用功了。
+The safety brain is also a core mechanism, and a very important one, but my main concern is: if I optimize the safety brain first, and later when I separate the expert brains, the original safety measures might fail, meaning wasted effort.
+
 同理，也把优化总监大脑，和专家大脑微服务放在后面的部分了。
+Similarly, I put optimizing the director brain and turning expert brains into microservices later.
+
 同时更远的目标是各个小脑互相交流，多大脑响应作为这个目标的地基，再逐步发展。
+The longer‑term goal is for each small brain to communicate with others; multi-brain response serves as the foundation for this goal, to be developed step by step.
+
 ！！
 在沿着这个方向继续构思时，突然发现一个问题：
+While continuing to think along this direction, I suddenly discovered a problem:
+
 我在想，我们做多大脑对话的话，比如A和B大脑，我们一段正常的信息，是应该先给某一方呢，还是同时给两边呢？
+When we do multi‑brain conversation, for example brain A and brain B, for a normal piece of information, should we give it to one side first, or to both simultaneously?
+
 以同时处理信息为前提的话，那两方都已经生成结果了，为何还需要对话呢？
+If we process the information simultaneously, both sides have already produced results – why do they still need to converse?
+
 所以是不是应该反过来根据问题的权重，优先给某一方？但是另一边的话语权会不会变？
+So should we instead give priority to one side based on the weight of the question? But then would the other side’s voice be compromised?
+
 AI本身就偏向于依附型辩论，会本能的偏向对方，那如果同时给两方的话，又怎么样交流呢，这里是否需要总监大脑或是说一个其他的大脑来介入呢？
+AI inherently tends toward conformist debate – it instinctively leans toward the other side. So if we give information to both sides simultaneously, how can they converse? Is a director brain or some other brain needed to intervene?
+
 如果是总监大脑介入的话，我认为用总监大脑做汇总输出没问题，但是多大脑互交，本质上是两个专家大脑之间的事情，或者举个例子，A：1+1=3，B：1+1=2。A：你是对的，1+1=2。
+If a director brain is involved, I think it’s fine for the director brain to do the aggregation and output, but multi‑brain interaction is essentially between the two expert brains themselves. For example: A says 1+1=3, B says 1+1=2, then A says: you are right, 1+1=2.
+
 如果换一个思路。以同时处理信息为前提的话，那两方都已经生成结果了，为何还需要对话呢。一个信息同时摆在双方面前，双方针对自己有的资源思考方式，先对信息进行处理，输出一个自己思考完的结果，但是可能不够全面，或者有些点想岔了，这个时候进行下一步对话，对话就是弥补博弈再输出的过程
+Let me think from a different angle. If we process information simultaneously, both sides have already generated results – why do they need to talk? The information is presented to both sides at the same time;
+each side uses its own resources and way of thinking to process it and outputs its own result, which might be incomplete or mistaken in some points. At that point, the next step is conversation – a process of compensation and game‑theoretic re‑output.
+
 举个例子，A：1+1=3，B：1+1=2。A：你是对的，大部分情况下1+1=2，但是以下情况1+1=3
+For example: A says 1+1=3, B says 1+1=2. A says: you are right, in most cases 1+1=2, but in the following cases 1+1=3.
+
 B：1+1=2，噢原来1+1=3有可能会有这些情况，抱歉是我没有考虑周到，重新汇总输出1+1=2或者某些情况下=3
+B says: 1+1=2, oh I see that 1+1=3 might be possible in these situations, sorry I didn’t consider that, re‑aggregate and output 1+1=2 or in some cases =3.
+
 A依附性肯定了B的结果，同时输出了自己的结果，B再思考拓展了自己的结果，两个脑子的思考互相验证，防止出现ai结果的单一性重新输出给客户更加全面的结果，让用户自己再重新结合自己所处的情况进行判断
+A affirms B’s result and also outputs its own result. B then rethinks and expands its result. The two brains’ thoughts verify each other, preventing AI from producing one‑sided answers, and deliver a more comprehensive result to the user, allowing the user to judge according to their own situation.
+
 这个方向是否可以呢？我不确定，但是觉得是比较合理的方式，我可以增加对话循环数上限，但这个方式的问题在于如何削弱AI的依附性，并且除开专家知识外，还需要引用通用知识库，并且还需要在输出时，有足够厉害的总监大脑可以汇总它们的输出。
+Is this direction feasible? I’m not sure, but I feel it is reasonable. I could increase the upper limit of conversation loops, but the problem with this approach is how to reduce AI’s tendency to conform. Besides expert knowledge
+we also need to incorporate general knowledge bases, and we need a sufficiently capable director brain to aggregate their outputs.
+
 这个方向上，老实说我没有得出答案，我不知道该怎么做。
+On this direction, honestly, I haven’t found an answer. I don’t know what to do.
+
 我想，这个问题有点太大，太深，太杂了，不是现在的我能够解决的，同时呢，我认为我不能够停滞不前，我需要动手，或许在我成长的过程中又会有新的理解，那暂时先把这个问题留给以后，留给将来的我吧。
+I think this problem is too big, too deep, too tangled – not something I can solve now. At the same time, I believe I cannot stagnate; I need to take action. Perhaps as I grow, I will gain new understanding. So for now, I will leave this problem for the future, for the future me.
+
 综上所述，我选择先做多大脑响应，先让两个专家大脑可以同时处理信息（并行处理），然后，在他们接受信息的方式上，我选择同时接受信息，加上循环保护，以及削弱依附性测试。以上完成后，应该做总监大脑的输出汇总，然后是安全大脑的优化。
+To summarise, I choose to first work on multi‑brain response: let two expert brains process information simultaneously (parallel processing). Then, for how they receive information, I choose simultaneous reception, plus loop protection and tests to weaken the conformist tendency.
+After the above is done, I should work on director brain output aggregation, and then safety brain optimisation.
