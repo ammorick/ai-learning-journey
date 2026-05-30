@@ -1,0 +1,57 @@
+这两天今天尝试了许多，首先说碰到的问题：
+I’ve done a lot of trials over the past two days. Let me start with the issues I encountered.
+
+在上次思考中，我选择下一步计划是先做多大脑并行处理信息。
+In my previous planning, I decided to prioritize implementing multi-brain parallel information processing as the next step.
+
+在实践时我碰到了很多麻烦，比如多个api的混合调用，api调用处理完后，又在让不同的行业大脑对应不同的api上卡壳了，之后是在主干程序里对问题处理方式的修改。。。。老实说我的python能力并不好，ThreadPoolExecutor也是现学现用的。
+However, I ran into quite a few troubles during development. For instance, handling mixed calls to multiple APIs was challenging.
+After the API calls were processed, I got stuck on matching different industry-specific brains with corresponding APIs. Later, I also revised the logic for request processing in the main program.
+To be honest, my Python skills are still limited, and I learned and used ThreadPoolExecutor on the fly for this project.
+
+虽然失败了很多次，但是所幸最后是成功跑通了，如Actual operation status里2026-05-30-1
+I failed many times during testing, but fortunately, the program finally runs smoothly. You can check the actual running status in the file 2026-05-30-1.
+
+然后是下一步：
+Now let’s talk about the next development plan.
+
+成功后，我开始设想下一步应该做什么，是做安全大脑呢？还是做总监大脑呢？还是把专家大脑彻底微服务化呢？
+After the core function worked, I started thinking about what to build next: should I develop the Security Brain first? Or the Supervisor Brain? Or fully convert all Expert Brains into microservices?
+
+老实说，我的技术功底并不好，我认为目前阶段应该不用去考虑外置，那是mvp完善以后才需要考虑的。
+Frankly speaking, my technical foundation is not solid enough. I believe external deployment can be put aside for now — that’s something to consider only after the MVP is fully polished.
+
+然后，我想认为还是应该优先做总监大脑，因为安全到时候是需要卡输入和输出。
+After weighing the options, I decided to work on the Supervisor Brain first. The Security Brain mainly focuses on filtering and validating input and output content, which can be arranged at a later stage.
+
+目前我们的输出模式是直接提取输出，我认为应该先继续模块化：把answer和汇总部分全都放去总监大脑，之后安全大脑的输入和输出就是用户和总监大脑，但是似乎也没必要？
+Currently, the system directly extracts and returns final outputs. I plan to continue splitting modules: move all answer generation and content summarization logic into the Supervisor Brain.
+In this design, the input and output of the Security Brain will only interact between end users and the Supervisor Brain.
+Then I thought again: is this design really necessary?
+
+现在main的情况好像和‘经总监大脑’输出后是一样的，但是感觉放在main里的话，就剩直接面对用户了，没有缓冲的余地，如果我把它放在总监大脑里呢？这样一来就多了一个缓冲的过程！可以预留内容修正，逻辑优化，格式统一，等等等等，可以大幅度提升系统的可维护性以及容错能力。
+The current logic in the main file is basically equivalent to processing outputs via a supervisor module. But if all logic stays in the main file, it interacts directly with users without any buffering layer.
+If I migrate the relevant logic to the Supervisor Brain instead, an extra buffering link will be added. This leaves room for content revision, logic optimization and format unification, which can greatly improve the system’s maintainability and fault tolerance.
+
+到这个阶段，我的问题又来了，如果我直接把answer调去总监大脑，我需要从主干文件里导入user_input,我认为两个文件来回导入数据，是很容易导致崩溃的，也就是不稳定。
+Soon another problem came up. If I move the answer logic directly to the Supervisor Brain, I will need to import user_input from the main file. In Python, frequent cross-file data imports between two modules will easily cause circular import issues and make the whole system unstable.
+
+所有我又换了一个思路，我把用户提问+问题分析+问题分发+答案回收全都放进总监大脑，但是这样子的话，是否总监大脑里太拥挤了呢？我觉得也不应该。
+So I adjusted my idea: integrate user queries, issue analysis, task distribution and response collection all into the Supervisor Brain. But then I worried this would overburden the Supervisor Brain with too many responsibilities, which is not a good design either.
+
+那就再换一个思路，既然我们最终的导向是微服务，那就先继续模块化，把用户提问，问题分析，问题分化，答案汇总，全都模块化。但是这样一想，我们模块化的太多了，或许最终这个方向是对的，但是对于目前MVP阶段，这个有点太杂乱了，而且维护起来很困难。
+I tried another approach. Since the long-term goal is to adopt a microservice architecture, I planned to split every single function into independent modules: user query receiving, issue analysis, task distribution and result summarization.
+However, splitting modules excessively would make the project overly fragmented. While this direction is correct in the long run, it is too complicated and hard to maintain for the current MVP phase.
+
+于是我便把用户提问+问题分析+问题优化，全都模块化成了一个新的大脑----分化大脑：这个大脑只做这三件事，然后总监大脑就专注于收到分化大脑的答案后，将之优化，整改，汇总一遍，之后主干大脑直接提炼就好。
+Eventually, I came up with a better solution:
+I combined user query receiving, issue analysis and task distribution into a brand-new independent module — the Distribution Brain. This brain is dedicated solely to these three tasks.
+
+这样既保证了主体尽量简洁干净，也让整体文件夹没那么凌乱，维护没那么困难，也尽量把各类模块都拆分出去了。
+This design keeps the main program concise and clean, prevents the project directory from getting messy, eases maintenance work, and properly decouples different functional modules.
+
+然后呢，在这个阶段，是的，我又失败了很多次，碰到很多奇怪的问题。。。逻辑错误、代码不通、导入函数失败、关键词索引以及空关键词、角色定位、增加专家的方式。。。。等等困难。
+I ran into countless strange issues in this phase as well: logic errors, runtime failures, broken function imports, keyword indexing exceptions & empty keyword values, role configuration problems, and difficulties in adding new expert modules, among many others.
+
+不过好在最终都解决了，代码整体也成功跑通，算是暂时成功了，目前还没有思索下一步做什么，这个留给休息的时候吧。
+Luckily, all bugs were fixed in the end, and the entire codebase runs steadily now. This phase is temporarily completed. I haven’t decided on the next task yet — I’ll figure it out during my break.
