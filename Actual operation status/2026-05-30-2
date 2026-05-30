@@ -1,0 +1,75 @@
+优化了整体结构，新增加一个大脑，专门用来接收用户信息，分析信息，分发给专家，生成结果，同时总监大脑作用改为：仅汇总优化答案。同时整体增加一点幽默风味。
+Optimized the overall architecture. Added a new agent dedicated to receiving, analyzing and distributing user inputs to expert modules and generating preliminary outputs.
+The supervisor agent now only compiles and polishes final answers. A touch of humor has also been added to the overall interaction.
+
+你的问题：212（随便输入的）
+Your Query: 212 (random input)
+
+总监汇总：亲爱的用户，关于数字212的解读，不同专家可能有不同的看法：
+Supervisor Summary: Hello there! Different experts have their own takes on the number 212:
+
+1. **趣味解读**：有专家认为212像是一个笑脸，其中“1”像眼睛，“2”像嘴巴，因此暗示“爱笑的人运气不会太差”。这种解读带有一定的趣味性和象征意义，适合作为一种轻松的交流方式。
+1.Fun Interpretation
+Some experts say 212 looks like a smiling face: the number "1" acts as eyes, while the two "2"s form a mouth. It means people who love to smile are always blessed with good luck. This is a fun and symbolic way to look at it, perfect for casual chats.
+
+2. **神秘代码解读**：也有专家提到，212听起来像是一个密码或神秘代码，这种解读可能暗示着它背后有更深层次的含义，有待进一步解密。
+2.Mystery Code Interpretation
+Others think 212 sounds like a password or secret code, which implies there may be hidden meanings waiting to be uncovered.
+
+数字212可以有多种解读。一方面，它可以被看作是一个笑脸的象征，寓意着乐观的态度可能带来好运。另一方面，它也可能是一个有待解密的代码，暗示着某种神秘的信息。具体选择哪种解读，取决于您希望赋予这个数字的意义
+The number 212 can be interpreted in various ways. On one hand, it stands for a smiling face, symbolizing optimism and good fortune. On the other hand, it can be seen as an encrypted code carrying mysterious messages. The meaning is totally up to you.
+
+如果您寻求一种积极的、象征性的解释，那么将其视为一个笑脸的象征可能更合适。如果您对数字感兴趣，并希望探索其潜在的秘密，那么将其视为一个代码可能更有吸引力。希望这些建议能帮助您更好地理解这个数字对您来说 
+可能代表什么。😄🌟
+If you prefer positive symbolic explanations, viewing it as a smiley face will be a great choice. If you are curious about hidden secrets behind numbers, treating it as a mysterious code will be more appealing. Hope this helps you figure out what 212 means to you. 😄🌟
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+你的问题：我发烧了，我的权益包含可以请假休息吗
+Your Query: I have a fever. Am I entitled to take sick leave?
+
+总监汇总：亲爱的用户，根据您提供的信息，以下是对您问题的综合回答：
+Supervisor Summary: Dear user, here is a comprehensive answer based on integrated opinions from our experts:
+
+如果您发烧了，首先需要重视的是您的健康状况。建议您尽快就医，由专业医生进行诊断和治疗。在等待诊断结果期间，您有以下权利和选择：
+If you are running a fever, please prioritize your health and seek professional medical diagnosis and treatment as soon as possible. While waiting for medical results, you have the following rights and options:
+
+1. **请假休息**：根据《中华人民共和国劳动法》和《中华人民共和国传染病防治法》，如果您确诊患有传染病或疑似传染病，您有权请假休息。此外，由于发烧通常需要休息以帮助身体恢复，您也可以根据公司或机构的规章制度，申请病假。
+1.Taking Sick Leave
+In accordance with the Labor Law of the People's Republic of China and the Law of the People's Republic of China on the Prevention and Treatment of Infectious Diseases
+you are entitled to sick leave if you are diagnosed with or suspected of having an infectious disease. Besides, fever requires rest for recovery, so you may also apply for sick leave following the rules of your company or institution.
+
+2. **法律依据**：
+   - **《中华人民共和国劳动法》**规定，劳动者在法定休假日和婚丧假期间以及本单位规定的其他假期期间，用人单位应当依法支付工资。
+   - **《中华人民共和国劳动合同法》**保障劳动者在患病或非因工负伤期间的权益，规定用人单位不得解除劳动合同。
+   - **《企业职工患病或非因工负伤医疗期规定》**明确了劳动者因病需要停止工作进行治疗的医疗期及相应待遇。
+2.Legal Basis
+The Labor Law of the People's Republic of China stipulates that employers shall pay wages normally to employees during statutory holidays, marriage and funeral leave, and other leave periods regulated by the company.
+The Labor Contract Law of the People's Republic of China protects employees who are ill or injured off the job, and employers are prohibited from terminating employment contracts under such circumstances.
+The Provisions on the Medical Leave Period for Employees Suffering from Illness or Non-work-related Injuries clarifies the medical leave period and corresponding benefits for employees who need to stop working for medical treatment due to illness.
+Leave Application Procedures
+
+3. **请假流程**：
+   - 您应向直接上级或人力资源部门提出请假申请。
+   - 提供医生的诊断证明或病假条，以证明您需要休息。
+   - 遵循单位的请假审批流程。
+3.Leave Application Procedures
+Submit your leave request to your direct supervisor or the human resources department.
+Provide a medical certificate issued by a doctor to prove you need rest.
+Follow the official approval procedures of your organization.
+
+4. **注意事项**：
+   - 如果您没有履行请假手续，擅自不到岗，用人单位可能会按旷工处理。
+   - 如果您的病情严重，建议及时就医并保留好医疗记录。
+4.Important Notes
+If you are absent from work without completing leave formalities, your absence may be regarded as unapproved absence.
+If your condition is serious, please get medical treatment promptly and keep all medical records properly.
+
+不同专家的观点差异在于：
+- **医疗专家**强调的是根据您的健康状况，休息有助于身体恢复，并建议您根据病情和医生的建议来决定是否请假。
+- **法律专家**则从法律角度出发，明确指出您享有病假的权利，并提供了相关的法律依据和请假流程。
+Differences between expert opinions:
+Medical experts emphasize that rest helps recovery based on your physical condition, and suggest you decide whether to take leave per your symptoms and doctor’s advice.
+Legal experts explain your legal right to sick leave from a legal perspective, and provide relevant legal provisions and application procedures.
+
+综上所述，如果您发烧需要休息治疗，您完全有权利根据公司规定和法律规定申请病假。请确保按照公司的请假流程进行，并保留好相关医疗证明。希望您早日康复！
+To sum up, you are fully entitled to apply for sick leave for fever treatment in compliance with company rules and national laws. Please follow the official application process and keep your medical certificates. Wish you a speedy recovery!
