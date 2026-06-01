@@ -1,82 +1,148 @@
- 安全防护双专家问答系统（MVP）
+ # 安全防护双专家问答系统（MVP）
+Dual-Expert Q&A System with Security Protection
 
-## 这个项目是什么？
-功能：用户提问 → 系统调用两个专家（比如医学、法律）综合后回答 → 同时一个独立的安全监测模块对输入/输出进行实时过滤（基于关键词）。
+## 📌 项目简介
+### 核心功能
+用户发起提问 → 系统调度**双专家大脑**综合分析并生成回答 → 独立安全监测模块对**输入、输出内容**进行全链路关键词实时过滤。
 
-## 为什么做这个？
-2025年6月我第一次接触Agent课程，脑子里冒出一些奇怪的想法——我觉得那就是未来。加上兴趣使然，便打算慢慢做。当时因个人原因没能持续，如今终于可以开始了。
+### 设计初衷
+2025年6月，我初次学习 Agent 相关课程。当时标准的 Agent 流程为：接收用户提问 → 交由大脑处理 → 调用工具 → 执行任务 → 生成结果 → 存入记忆并返回答案。
+学习过程中我萌生了一个疑问：**为什么智能体不能拥有多个大脑？** 然后莫名其妙的思路突然全冒出来了。我认为这会是未来的方向，也因此下定决心落地这个项目。但受个人原因影响，项目一度中断，如今重新启动持续开发。
 
-市面上的多智能体偏向“功能”，很少考虑“安全”。所以我希望设计一个‘外置安全大脑’：独立运行、不被主逻辑绕过、可插拔、可备份。这个MVP就是该思路的验证。
+目前市面上多数多智能体项目更侧重功能实现，普遍忽略安全能力。在我看来，AI 的安全需求会随着模型能力增强同步提升。
+本项目目标：
+1. 实现**独立可插拔、可备份、无法被主逻辑绕过**的外置安全大脑；
+2. 验证多大脑之间相互对话、协作的可行性；
+3. 以 MVP 形式落地整套设计思路。
 
-## 当前进展（2026-05-28）
-1.Python学习（变量、循环、函数、字典、集合）
-2.尝试搭建AI（目前为雏形，日后继续更新）
-  2.1 已成功搭建AI雏形（2026-05-26）
-  2.2 将各个功能全部模块化（除main部分）（2026-05-27）
-  2.3 优化专家大脑的选择，使单大脑变成多大脑，考虑下一步方向。（2026-05-28）
-3.搭建Agent还是不太熟练，继续每日尝试一次默写Agent。
+---
 
+## 📅 开发进度（时间线）
+> 记录从入门到项目搭建的完整过程
+1. 2026-05-26：完成 AI 基础雏形搭建
+2. 2026-05-28：除主程序外，完成对所有功能的模块化拆分。
+3. 2026-05-30：优化专家大脑调度逻辑，由单大脑升级为多大脑；新增‘分化大脑’：负责接受任务，拆解任务，分发任务，收集答案。规划下一步构思。
+5. 持续任务：巩固 Python 基础（变量、循环、函数、字典、集合）；每日默写 Agent 逻辑，熟练掌握架构设计。
 
-## 未来计划
-1. 完成MVP（安全监测 + 双专家）
-2. 增加Web界面，方便演示
-3. 将安全监测拆分为独立进程（微服务）
-4. 引入语义级安全判断（小型模型）
-5. 多语言规则库 + UTF-8规范化
+---
 
-## 技术栈
+## 🚀 未来规划 Roadmap
+### 短期（MVP 阶段）
+1. 完成核心 MVP：打通双专家问答 + 关键词安全监测全流程
+
+### 中期（功能拓展）
+1. 搭建 Web 交互界面，方便功能演示与使用
+2. 将安全监测模块拆分为独立进程，向微服务架构演进
+3. 升级安全能力：接入小型模型，实现**语义级安全判断**（不止依赖关键词）
+
+### 长期（标准化&国际化）
+1. 搭建自更新安全规则库
+2. 完成全项目 UTF-8 编码规范化处理
+3. 模型全部微服务化
+4. 完成‘安全大脑’的自我检测，简单自我修复功能。
+
+---
+
+## 🛠️ 技术栈
+### 当前使用
 - Python 3.9+
-- OpenAI API（gpt-4o-mini）
-- （后续：Flask、Unicode规范化）
+- OpenAI API (gpt-4o-mini)
 
-## 如何运行？
-（待补充，完成MVP后写）
+### 后续引入
+- Flask（Web 服务）
+- Unicode / UTF-8 编码规范化工具
 
-## 关于我
+---
+
+## ▶️ 运行指南
+待 MVP 开发完成后补充详细部署、启动步骤。
+
+---
+
+## 🙋 关于我
 一个零基础自学者，对AI系统架构和安全设计有强烈兴趣。代码很烂，愿景很大。欢迎围观，更欢迎嘲笑——嘲笑会让我跑的更快！
 我相信‘安全’和AI应该是深度绑定的，并且真正的AI应该具备独立演化能力，这个项目是我从0到1的开端，也是我AI之路的起点
 我始终相信，没有今天，是不会有明天的，只有拥有了今天，真正的明天才会到来！
 
-欢迎任何建议或讨论。# ai-learning-journey
+如果你有任何建议、想法或讨论，都欢迎留言交流！
+
+---
+
 
 ----------------------------------------------------------------------------------------------------------
-# Secure Dual-Expert Q&A System (MVP)
+# Dual-Expert Q&A System with Security Protection (MVP)
 
-## What is this project?
-User asks a question → The system calls two expert modules (e.g., medical, legal) and synthesizes their answers → Meanwhile, an independent safety monitoring module filters the input/output in real time (keyword-based).
+## 📌 Project Overview
 
-## Why build this?
-In June 2025, I was first exposed to an Agent course, and some strange ideas popped into my head — I felt that they were the future. Driven by interest, I decided to slowly work on this project. Due to personal reasons, I couldn’t continue at that time, but now I can finally start.
+### Core Features
+User submits a question → the system dispatches **dual‑expert brains** for comprehensive analysis and response generation → an independent security monitoring module performs real‑time keyword‑based filtering on **both input and output** content.
 
-Most multi-agent frameworks focus on “functionality” and rarely consider “safety”. Therefore, I want to design an **external safety brain**: independent, cannot be bypassed by the main logic, pluggable, and backup-friendly. This MVP is the verification of that idea.
+### Design Motivation
+In June 2025, I was first learning about Agent-related courses. The standard Agent workflow at that time was: receive user query → hand over to a single brain → decide which tools to invoke → execute tools → generate results → store in memory → return the answer.
 
-## Current Progress (2026-05-26)
-1. Python learning (variables, loops, functions, dictionaries, sets)
-2. Attempt to build AI (currently a prototype, to be continued)
-  2.1 Successfully built AI prototype (2026-05-26)
-  2.2 All functions modularized (except main part) (2026-05-27)
-  2.3 Optimized expert brain selection, upgraded from single-brain to multi-brain, considering next steps (2026-05-28)
-3. Building Agent still not very proficient, continue daily attempt to rewrite Agent from memory.
-## Future Plans
-1. Complete MVP (safety monitoring + dual experts)
-2. Add a web interface for easy demonstration
-3. Separate safety monitoring into an independent process (microservice)
-4. Introduce semantic-level safety judgment (small model)
-5. Multi-language rule base + UTF-8 normalization
+While learning, a question popped into my head: **Why can’t an agent have multiple brains?** Then, out of nowhere, a stream of ideas surged. I felt this would be the future, and that’s why I decided to bring this project to life. Due to personal reasons, the project was put on hold, but now I have restarted development.
 
-## Tech Stack
+Most multi‑agent projects in the market focus on functionality but often overlook security capabilities. In my opinion, the demand for AI security grows as models become more powerful.
+
+Goals of this project:
+1. Build an **external safety brain** that is pluggable, backup‑friendly, and cannot be bypassed by the main logic.
+2. Verify the feasibility of **multi‑brain dialogue and collaboration**.
+3. Implement the entire design as an MVP.
+
+---
+
+## 📅 Development Progress (Timeline)
+
+> From beginner to project building
+1. 2026-05-26: Initial AI prototype completed.
+2. 2026-05-28: Full modularisation (except the main program) achieved.
+3. 2026-05-30: Upgraded expert dispatching logic from single‑brain to multi‑brain; added a “Distribution Brain” responsible for receiving tasks, breaking them down, dispatching them, and collecting answers. Next steps planned.
+4. Ongoing: Reinforce Python basics (variables, loops, functions, dictionaries, sets); practice Agent logic daily to master the architecture design.
+
+---
+
+## 🚀 Future Roadmap
+
+### Short‑term (MVP Phase)
+1. Complete the core MVP: dual‑expert Q&A + keyword‑based security filtering.
+
+### Mid‑term (Feature Expansion)
+1. Build a Web interface for easy demonstration.
+2. Split the security monitoring module into an independent process, evolving toward a microservices architecture.
+3. Upgrade security capabilities: introduce a small model for **semantic‑level safety judgment** (beyond keywords).
+
+### Long‑term (Standardisation & Internationalisation)
+1. Build a self‑updating safety rule base.
+2. Complete UTF‑8 normalisation across the entire project.
+3. Fully microservice‑oriented model.
+4. Implement self‑checking and simple self‑repair capabilities for the Safety Brain.
+
+---
+
+## 🛠️ Tech Stack
+
+### Current
 - Python 3.9+
 - OpenAI API (gpt-4o-mini)
-- (Future: Flask, Unicode normalization)
 
-## How to run?
-(To be added after MVP completion)
+### Future
+- Flask (Web service)
+- Unicode / UTF‑8 normalisation tools
 
-## About Me
-A self‑taught beginner with strong interest in AI system architecture and safety design. My code is messy, but my vision is big. Welcome to watch, and even more welcome to mock — mockery will only make me run faster!
+---
 
-I believe that “safety” and AI should be deeply bound, and that true AI should be capable of independent evolution. This project is my start from 0 to 1, and the beginning of my AI journey.
+## ▶️ How to Run
 
-I always believe that without today, there will be no tomorrow. Only when we have today can the real tomorrow arrive.
+To be added after the MVP is completed.
 
-Any suggestions or discussions are welcome.
+---
+
+## 🙋 About Me
+
+A self‑taught beginner with a strong interest in AI system architecture and security design. My code is messy, but my vision is huge. You are welcome to watch, and even more welcome to mock me – mockery will only make me run faster.
+
+I believe **security** and **AI** should be deeply bound, and that true AI should be capable of independent evolution. This project is my start from 0 to 1, and the beginning of my AI journey.
+
+I always believe that **without today, there will be no tomorrow**. Only by owning today can the real tomorrow arrive.
+
+If you have any suggestions, ideas, or just want to discuss, feel free to reach out!
