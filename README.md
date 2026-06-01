@@ -22,6 +22,7 @@ Dual-Expert Q&A System with Security Protection
 1. 2026-05-26：完成 AI 基础雏形搭建
 2. 2026-05-28：除主程序外，完成对所有功能的模块化拆分。
 3. 2026-05-30：优化专家大脑调度逻辑，由单大脑升级为多大脑；新增‘分化大脑’：负责接受任务，拆解任务，分发任务，收集答案。规划下一步构思。
+4. 2026-06-02：增加记忆大脑，基础部分已完成，已成功生成记忆文件。目前在专家大脑阅读上文时发生错误。
 5. 持续任务：巩固 Python 基础（变量、循环、函数、字典、集合）；每日默写 Agent 逻辑，熟练掌握架构设计。
 
 ---
@@ -97,7 +98,8 @@ Goals of this project:
 1. 2026-05-26: Initial AI prototype completed.
 2. 2026-05-28: Full modularisation (except the main program) achieved.
 3. 2026-05-30: Upgraded expert dispatching logic from single‑brain to multi‑brain; added a “Distribution Brain” responsible for receiving tasks, breaking them down, dispatching them, and collecting answers. Next steps planned.
-4. Ongoing: Reinforce Python basics (variables, loops, functions, dictionaries, sets); practice Agent logic daily to master the architecture design.
+4. 2026-06-02: Implemented the Memory Brain with core functions finished; memory files can be generated successfully. Errors currently occur when Expert Brains attempt to load historical context.
+5. Ongoing: Reinforce Python basics (variables, loops, functions, dictionaries, sets); practice Agent logic daily to master the architecture design.
 
 ---
 
@@ -115,7 +117,8 @@ Goals of this project:
 1. Build a self‑updating safety rule base.
 2. Complete UTF‑8 normalisation across the entire project.
 3. Fully microservice‑oriented model.
-4. Implement self‑checking and simple self‑repair capabilities for the Safety Brain.
+4. 
+5. Implement self‑checking and simple self‑repair capabilities for the Safety Brain.
 
 ---
 
