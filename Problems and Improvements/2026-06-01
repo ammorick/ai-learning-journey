@@ -1,0 +1,103 @@
+当前状态：
+Current Status:
+
+  这几天都没有更新代码，而是一直在复习，梳理架构内容，同时计划下一步怎么做。
+  I haven't updated the code these days. Instead, I have been reviewing materials, sorting out the architecture and planning the next steps.
+
+经过这两天考虑，我首先是得出了以下两条路线，并分别附上理由：
+After two days of consideration, I worked out the two development approaches below, with detailed rationales attached:
+
+路线一：外置专家大脑(如果允许，在外置其他大脑）→优化总监大脑→多大脑对话→安全大脑。
+Approach 1: Deploy Expert Brain externally (and other brains if applicable) → Optimize Director Brain → Implement multi-brain interaction → Refine Security Brain.
+
+理由：考虑到了外置后，各个大脑之间的连接问题，总监大脑的优化放在第二个是因为目前他的职责只有优化汇总的作用，往后再加功能，比如联想词汇。
+最后需要解决的也只是和其他大脑的连接问题，所以不属于大脑本身问题，安全大脑放在最后，也是因为需要考虑输入，输出，动态检测，各个接口的问题。
+Rationale: This plan takes full account of connectivity issues after external deployment of each brain.
+The Director Brain is scheduled second because it currently only undertakes aggregation and optimization tasks. New features such as word association will be added to it later.
+The remaining work only involves connection adaptation with other modules, rather than internal improvements of the brains themselves.
+The Security Brain is placed last, as it needs to handle input, output, dynamic detection and adaptation to various interfaces.
+
+路线二:安全大脑优化→优化总监大脑→外置专家大脑(如果可以，其他大脑也外置）→多大脑对话
+Approach 2: Optimize Security Brain → Optimize Director Brain → Deploy Expert Brain externally (and other brains if applicable) → Implement multi-brain interaction.
+
+理由：目前来讲我们mvp最基本的雏形已经ok了，剩下的都是各个模块的优化。
+先做安全大脑的意思是优先展示核心功能，隔离，自检查，词汇动态更新，utf-8逻辑，等等，之后的顺序就也是功能需求，接口对接放在后面。
+Rationale: The basic prototype of our MVP is now complete, and the follow-up work will focus on optimizing each module.
+Prioritizing the Security Brain helps polish its core capabilities first, including isolation, self-inspection, dynamic keyword updates, UTF-8 encoding logic and more. Other functional requirements and interface integration will be arranged for later.
+
+但是呢，虽然这两个路线都挺逻辑自洽，并且思路似乎没错，但是想着想着，总感觉哪里不太对劲。
+While both approaches are logically consistent and seem reasonable overall, I still feel there are hidden problems after in-depth thinking.
+
+然后重新考虑了一下，我在想，我的安全大脑，如果完全外置（微服务化）的话，是否真的是一件好事？
+I then re-examined the solution: is it really a good idea to fully deploy the Security Brain as an independent microservice?
+
+安全大脑是整个系统的第一道入口防线 + 最后一道出口防线，所有用户输入、最终输出都必须经过它。
+The Security Brain serves as both the first entry defense line and the final exit defense line of the entire system. All user inputs and final outputs must pass through it.
+
+也就是说，所有的请求有要走这个部分，如果完全网络化，一旦网络出现问题，是否会直接因为安全大脑的原因，导致整体崩溃？
+In other words, every request has to go through this module. If it is fully network-based, any network failure will directly cause the whole system to crash due to the breakdown of the Security Brain.
+
+如果面对黑客，不攻击安全大脑，转而攻击网络，那是否安全大脑的防护措施等于白费精力了？
+If hackers choose to attack the network instead of targeting the Security Brain itself, all protection mechanisms built into the Security Brain will end up being useless.
+
+并且实际上，所有的部分外置化，就会导致流程全覆盖的难度直线上升，是否也合适呢？
+Furthermore, externalizing all modules will sharply increase the difficulty of full-process monitoring. I doubt whether this solution is appropriate.
+
+再者，安全大脑本质是所有大脑都需要依靠的一个大脑，也就是基本上各部分都会有安全监测。
+In essence, the Security Brain is a core component relied on by all other modules, and security monitoring is required for nearly every part of the system.
+
+最初想到外置安全大脑时，也仅仅是因为怕安全大脑被内置程序同化或是绕过，但是这样看来，模块化似乎也足够满足要求了啊？微服务的不稳定性太大了！
+My original intention for externalizing the Security Brain was to prevent it from being compromised or bypassed by internal programs. But now I realize that standard modular design can already meet this demand. Microservices will introduce too much instability.
+
+综合来讲，如果这样子弊端反而增多了，那又何必追求微服务呢？
+Overall, if externalization brings more drawbacks than advantages, there is no need to pursue microservices at this stage.
+
+考虑到这，那是否换一个思路，把安全大脑从模块化的外置结构，变成包容式呢？
+With that in mind, I came up with a new idea: transform the externally modularized Security Brain into an integrated architecture.
+
+安全大脑把其他大脑完全包容进入，在内部单独扩充空间，同样也能实现全程监控，自我管控，甚至底层解码更方便！
+In this mode, the Security Brain encapsulates all other functional brains internally with independent dedicated spaces. It can still realize full-process monitoring and self-management, and even makes low-level decoding much more convenient.
+
+同时，面对外界的攻击，也是可以单独设计一套对外防护的，而且似乎按这个逻辑，也没必要把其他大脑微服务化了，内置隔离就够了，要实现多大脑对话也可以做到。
+Meanwhile, I can design a dedicated external protection system for the integrated structure. Following this logic, there is no need to turn other brains into microservices either. Internal isolation is sufficient, and multi-brain interaction can also be realized smoothly.
+
+顺着这个方向去考虑的话，我认为，或许在MVP阶段可以这么做，做成包容式的。
+Based on this thinking, I believe the integrated architecture is a practical choice for the current MVP phase.
+
+但是长远来看，似乎还是不行，因为一旦小脑增多，或者是记忆文本变多，特别是面多极多人使用的情况下，用包容式很可能内存爆炸！！
+However, this solution is not viable in the long run. As the number of sub-brains increases and the volume of stored text data expands — especially when the system faces massive concurrent users — the integrated architecture will very likely suffer from severe out-of-memory (OOM) issues.
+
+另外再考虑一下模块化和微服务，这个真的有必要吗？
+I also further questioned: do we really need to migrate from modular design to microservices?
+
+他们之间最大的区别是独立和伪独立，模块化都在同一个文件夹内，是伪独立，如果日后要升级某个部分，是不是所有的功能都得停运呢？
+The biggest difference between the two architectures lies in true independence and pseudo-independence. Modules under modular design are stored in the same directory, which means they are only pseudo-independent. If we need to upgrade a single module in the future, will the entire system have to shut down?
+
+如果说有了记忆模块之后，面对海量的记忆文件，是否也会面对包容式同样的问题呢？也就是内存爆炸。
+After adding the Memory Module, storing massive memory files will lead to the same OOM risks as the integrated architecture.
+
+但如果是真正的独立，也就是微服务的话，在网络连接的情况下，理想状况是可以拥有无限的空间，我可以通过微服务而实现不同的外部储存，同时也有分类储存，这个是很理想的情况了，同时还有强连接性，关联性等等。如果某个点故障了，或者要升级，也就避免了全系统瘫痪。 
+By contrast, microservices achieve true independence. With stable network connections, they can provide virtually unlimited storage space in ideal scenarios.
+I can access multiple external storage services and implement classified data management, which is a huge advantage. Microservices also ensure strong interconnectivity between components. More importantly, the failure or upgrade of a single service will not cause a full system outage.
+
+同时，也许有一些功能不适合用python来做？这个我并不能确定，仅仅是我的猜想。如果是完全微服务的话，或许可以完全针对需求来确定设计方针。
+In addition, I suspect some functions may not be suitable for development with Python — this is just my personal speculation. A complete microservice architecture allows me to formulate targeted design strategies for different requirements.
+
+所以对于当前来讲，mvp阶段，或许包容式反而是最好的，但是长远来看，微服务一定是最优解，只是想要成功设计会更困难，但对目前来讲，模块化或许已经够了。
+To conclude, the integrated architecture is the best choice for the current MVP stage, while microservices are definitely the optimal solution for long-term iteration. Admittedly, building a mature microservice system is much more difficult. For now, standard modular design is more than enough.
+
+综合上述，我决定把下一步计划制定为：增加记忆模块
+Based on all the above analysis, I have confirmed the next development task: add the Memory Module.
+
+未来安排：
+Future Plans：
+1.优先构建记忆模块，然后简单优化。
+1.First develop the Memory Module, then perform basic optimization.
+
+2.在保持模块化的状态下，略微优化安全大脑。
+2.Conduct minor optimization on the Security Brain while keeping the current modular architecture.
+
+有个疑惑：
+Personal Reflection：
+我觉得我好像每次在决定下一步计划的时候，花的时间都有点长，这次是花了两天的时间，有时候会感觉自己好像想的太多了，好像把问题想的太复杂了，这个我也不太清楚是不是件好事，再观察一下吧！
+I find that I always spend a long time confirming the next development plan. I spent two days on this round of planning. Sometimes I feel I tend to overthink and overcomplicate problems. I am still not sure if this is a good habit, so I will keep observing myself going forward.
