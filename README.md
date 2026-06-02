@@ -38,9 +38,8 @@ Dual-Expert Q&A System with Security Protection
 
 ### 长期（标准化&国际化）
 1. 搭建自更新安全规则库
-2. 完成全项目 UTF-8 编码规范化处理
-3. 模型全部微服务化
-4. 完成‘安全大脑’的自我检测，简单自我修复功能。
+2. 模型全部微服务化
+3. 完成‘安全大脑’的自我检测，简单自我修复功能。
 
 ---
 
@@ -51,7 +50,6 @@ Dual-Expert Q&A System with Security Protection
 
 ### 后续引入
 - Flask（Web 服务）
-- Unicode / UTF-8 编码规范化工具
 
 ---
 
@@ -115,10 +113,8 @@ Goals of this project:
 
 ### Long‑term (Standardisation & Internationalisation)
 1. Build a self‑updating safety rule base.
-2. Complete UTF‑8 normalisation across the entire project.
-3. Fully microservice‑oriented model.
-4. 
-5. Implement self‑checking and simple self‑repair capabilities for the Safety Brain.
+2. Fully microservice‑oriented model.
+3. Implement self‑checking and simple self‑repair capabilities for the Safety Brain.
 
 ---
 
@@ -130,7 +126,6 @@ Goals of this project:
 
 ### Future
 - Flask (Web service)
-- Unicode / UTF‑8 normalisation tools
 
 ---
 
