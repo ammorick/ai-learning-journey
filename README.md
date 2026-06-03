@@ -60,7 +60,7 @@ Dual-Expert Q&A System with Security Protection
 ---
 
 ## 🙋 关于我
-一个零基础自学者，对AI系统架构和安全设计有强烈兴趣。代码很烂，愿景很大。欢迎围观，更欢迎嘲笑——嘲笑会让我跑的更快！
+我是一个外卖员，目前每天12小时跑单+3小时左右的自学。一个零基础自学者，对AI系统架构和安全设计有强烈兴趣。代码很烂，愿景很大。欢迎围观，更欢迎嘲笑——嘲笑会让我跑的更快！
 我相信‘安全’和AI应该是深度绑定的，并且真正的AI应该具备独立演化能力，这个项目是我从0到1的开端，也是我AI之路的起点
 我始终相信，没有今天，是不会有明天的，只有拥有了今天，真正的明天才会到来！
 
@@ -139,7 +139,7 @@ To be added after the MVP is completed.
 
 ## 🙋 About Me
 
-A self‑taught beginner with a strong interest in AI system architecture and security design. My code is messy, but my vision is huge. You are welcome to watch, and even more welcome to mock me – mockery will only make me run faster.
+I work as a food delivery rider, spending 12 hours on orders daily and roughly 3 hours on self-study.A self‑taught beginner with a strong interest in AI system architecture and security design. My code is messy, but my vision is huge. You are welcome to watch, and even more welcome to mock me – mockery will only make me run faster.
 
 I believe **security** and **AI** should be deeply bound, and that true AI should be capable of independent evolution. This project is my start from 0 to 1, and the beginning of my AI journey.
 
