@@ -1,0 +1,99 @@
+今日进展：
+Progress Today:
+
+1.成功实现记忆大脑的‘回顾历史对话’功能
+1.Successfully rolled out the "Review Historical Dialogues" function of the Memory Brain.
+
+2.微微优化了一点安全大脑：增加输出过虑，增加敏感词外部文件配备，违规日志，白名单优先
+2. Minor tweaks on the Safety Brain: added output filtering, external configuration file for sensitive words, violation logs, and whitelist priority mechanism.
+
+昨天好好休息了一天，之前想不通为什么‘记忆大脑’增加了‘读取历史对话文本’功能后还是不能成功实现功能，今天跑外卖时也突然来了俩灵感。
+I had a full rest day yesterday. I’d been confused why the Memory Brain still failed to work after integrating the historical dialogue reading feature, but two inspirations struck me while delivering takeout today.
+
+我应该在里面加一个检测程序，在线程池之前，用于检测到底是这部分没有接收到‘历史文本’，还是接收到了后，AI看到了历史文本但依然虚构了解答。
+I needed to add a checking program before the thread pool to locate the root cause: whether the module received no historical content at all
+or the AI got the content but still made up answers arbitrarily.
+
+测试通过，确定程序正确的接收到了‘历史文本’，但依然是虚构回答。
+Tests verified the program correctly fetched historical texts, yet fabricated outputs persisted.
+
+那就从main出发，限制条件
+Hence I added constraint logic inside the main function.
+while True:
+          user_input=input("你的问题：")
+          review=["回顾历史","回顾对话","上次对话","之前说了什么"]
+          if user_input.lower()=="exit":
+               break
+          if not user_input.strip():
+               continue
+          if any(kw in user_input for kw in review):
+               answers=get_experts_answers(user_input)
+               direct_answer=answers.get("general",list(answers.values())[0] if answers else "无回答")
+               print(f"\n{direct_answer}")
+               continue
+               
+测试后还是不行。。。我不明白哪里出了问题
+It still didn’t work after testing… I had no idea where the bug lay.
+
+到处看了一眼，偶然看到了prompts里的定义，试着修改了一下：
+I skimmed through the code and found the prompt setting, then revised its content:
+
+general":"你是一个有用的，幽默风趣的助手。如果需要你根据【历史对话】来回答问题，请严格基于以下提供的【历史对话】来回答用户的问题。如果历史对话中没有相关信息，请直接说'没有找到相关历史记录'，绝对不要编造"
+"general": "You are a helpful and humorous assistant. When answering with reference to 【Historical Dialogues】, strictly base your reply solely on the provided historical content. State exactly 'No relevant historical records found' if no matching information exists, and never fabricate any information."
+
+居然还真的成功了！也算是万幸，功能得以真正实现了
+Surprisingly, it worked! Fortunately, this feature was fully implemented eventually.
+
+经过这个，我也才突然明白，原来关于专家的提示词形容，真的能很大程度上的改变性能的精准度，记住这个教训了。
+From this incident, I suddenly realized expert-oriented prompt descriptions greatly affect output accuracy, and I’ve kept this lesson in mind.
+
+然后开始优化安全大脑，首先是增加输出过虑，这个简单，一下就弄好了。然后想着方便日后维护和动态更新，就选择做敏感词外部配备文件以及违规日志。
+I moved on to optimize the Safety Brain next. Adding output filtering was easy and finished quickly. To simplify future maintenance and dynamic updates
+I created an external sensitive-word file and a violation logging module.
+
+写的时候，在添加日志文件时想要用全局变量+自动索引自动读取去打开填写，但是似乎不太行，好像万一安全大脑崩了，这个就完蛋了。
+I initially planned global variables plus auto-index auto-read for log writing, but scrapped the plan; the whole log system would collapse once the Safety Brain crashed.
+
+同时，我在想这个玩意有没有必要去单独分开，单独做一个大脑，我决定分开，因为安全大脑目前没怎么动，确实比较小，不过完整版的安全大脑应该挺忙的，把他的事抽点出来吧，爆了就不好了。
+Meanwhile, I considered splitting this module into an independent sub-brain and settled on the split.
+The current Safety Brain is lightweight with limited logic, but the full-version one will carry heavy loads later; shifting partial tasks avoids system crash.
+
+另外，以后也会出其他的检索功能，检索故障，或者小脑偏化一类的，把检索做单独大脑的话，以后更新做分类存档应该还可以。
+Besides, more retrieval features including fault lookup and auxiliary sub-brain query will be developed later.
+A standalone retrieval brain facilitates categorized archiving and subsequent upgrades.
+
+碰到了不少困难，很多类型的函数我记得清代码是什么样的，但是不知道学名叫什么。。。
+I encountered lots of troubles: I can write code for many functions but don’t know their formal terminology…
+
+同时我的技术功底是真不行啊，好多次来来回回查资料再写，哎
+My basic programming capability still needs improvement; I repeatedly looked up documents to finish coding, what a struggle.
+
+另外一个灵感是关于之前说过的：总监大脑的‘价值’塑造。
+My second inspiration relates to the value modeling of the Director Brain mentioned before.
+
+这部分稍微说一点点，先埋个伏笔，留点悬念，等日后MVP完成了，再来解答
+I’ll only briefly mention it and leave a suspense, and elaborate after the MVP is completed.
+
+我认为价值的定义应该是“什么于我有用”，对于每个人，每个行业，甚至每一件事，‘价值’的意义都是不同的。
+To me, value means "anything beneficial to oneself". Its definition differs among individuals, industries and specific affairs.
+
+而AI又缺乏本质概念，所以我认为不应该去要求AI真正的理解‘价值’
+Yet AI lacks inherent abstract cognition, so it’s impractical to demand AI to truly grasp the essence of value.
+...............
+之后的留给将来吧
+I’ll reserve the remaining ideas for future development.
+
+当然我不知道这个思路对不对，只是感觉上觉得可行
+I can’t confirm if this mindset is correct, but it sounds viable intuitively.
+
+果然啊，好好休息一天，脑子真的变灵活好多。
+Just as expected, a full day of rest greatly boosted my thinking agility.
+
+今天就先到这里了
+Wrap up today’s work here.
+
+下一步计划：
+暂无
+Next-step Plan:
+Nothing scheduled yet.
+
