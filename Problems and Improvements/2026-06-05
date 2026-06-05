@@ -1,0 +1,33 @@
+
+
+今日进展 / Progress Today
+
+今天主要做了一些“清理工作”，让项目看起来更专业、更规范，也为后续公开分享做准备。
+
+- **修复低级问题**：删除了未使用的僵尸代码（如 `zhuanjia.py`），修正了不规范的拼音命名（`anquan.py` → `safe.py`，`fenhua.py` → `dispatcher.py` 等）。
+- **API 密钥管理升级**：彻底移除代码中的硬编码密钥，改用环境变量 + `.env` 文件，并添加 `.gitignore` 防止密钥泄露。
+- **异常处理优化**：在 `dispatcher.py` 中捕获专家调用失败，返回友好占位符而非直接崩溃。
+- **配置文件路径修正**：确保 `safe.py` 能正确加载 `safety_rules.json`（移到 `config/` 或改代码路径）。
+- **添加 `requirements.txt`**：锁定依赖版本，方便他人一键安装。
+- **编写专业 README**：分离中英文版本，去掉个人日记式内容，突出项目亮点、快速开始、路线图。
+
+下一步计划：
+目前还没有考虑好，是继续做总监大脑的优化，还是做安全大脑的优化，还是开始尝试多大脑对话（目前只能算伪对话），还是做其他部分呢，目前还没想好，唉，最近跑外卖有点累，感觉精神状态不太好
+
+---
+
+**English version:**
+
+Today I did some cleanup to make the project more professional and ready for public sharing.
+
+- **Fixed bad habits**: removed dead code (`zhuanjia.py`), renamed messy files (`anquan.py` → `safe.py`, `fenhua.py` → `dispatcher.py`, etc.).
+- **API key management**: eliminated hardcoded keys, switched to environment variables + `.env` file, added `.gitignore`.
+- **Exception handling**: in `dispatcher.py`, catch API call failures and return user‑friendly placeholders instead of crashing.
+- **Config path fix**: ensured `safe.py` can correctly locate `safety_rules.json` (either move to `config/` or adjust code).
+- **Added `requirements.txt`**: locked dependencies for easy installation.
+- **Wrote clean README**: separated Chinese/English versions, removed personal diary style, highlighted features, quick start, and roadmap.
+
+Next Steps 
+I haven't decided yet whether to continue optimizing the Director Brain, improving the Safety Brain.
+starting to experiment with true multi-brain dialogue (currently it's only pseudo-dialogue), or working on other parts.
+Still thinking… Lately, delivery work has been exhausting, and I'm feeling a bit mentally drained.
