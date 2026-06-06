@@ -1,0 +1,39 @@
+今日内容：
+
+MVP的雏形内容基本已完成，思考下一步应该做什么
+构思草图于https://github.com/ammorick/ai-learning-journey/tree/main/Docs/design/2026-06-06
+之后的改进计划：
+1.UTF-8转码底层嵌入式
+2.敏感词更新
+3.增加第三个大脑以及API
+4.更换线程池模式
+5.用户联想
+6.输出逻辑优化
+7.记忆样式区分
+8.构建多大脑对话(随机大脑虽然是MVP阶段但不打算用固定大脑)
+9.安全覆盖
+10.总监价值
+11.安全大脑-自我检测+简单修复
+另持续学习Python基础。。。。我的技术功底太差了
+矛盾大脑暂时不考虑
+
+
+Today's update:
+The MVP prototype is basically complete. Now thinking about what to do next.
+Concept sketches are here:
+https://github.com/ammorick/ai-learning-journey/tree/main/Docs/design/2026-06-06
+Planned improvements (in order):
+1.UTF-8 encoding – embed at a lower level
+2.Sensitive word updates (dynamic)
+3.Add a third brain + corresponding API
+4.Improve thread pool mode
+5.User query association / suggestion
+6.Output logic optimization
+7.Differentiate memory styles (short‑term / long‑term)
+8.Build multi‑brain dialogue – even in MVP, do not use fixed brains; use random selection instead
+9.Full safety coverage (input, intermediate, output)
+10.Director brain – value judgement / worth assessment
+11.Safety brain – self‑check + simple self‑repair
+Also:
+Continue learning Python basics… my technical foundation is still too weak.
+Contradiction brain is postponed (not considered for now).
