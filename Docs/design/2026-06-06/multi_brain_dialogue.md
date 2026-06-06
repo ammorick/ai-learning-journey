@@ -1,42 +1,37 @@
-# 多大脑并行对话设计草案
-
-> **状态**：早期构思，未在 MVP 中实现。当前版本仅为方向性记录。
-
-## 核心流程
-
-下图展示了未来计划实现的多大脑并行对话机制：多个专家大脑**共享一个框架**，**并行**阅读、思考、生成回答，然后同步更新框架，循环迭代，直到收敛或达到上限。
-
-```mermaid
 flowchart TD
-    Start([用户问题]) --> Route{路由 & 分层}
-    Route -->|简单问题| Direct[直接调用单个专家 → 输出]
+    Start([用户问题]) --> SafetyIn[安全大脑检测输入]
+    SafetyIn --> Route{路由 & 分层}
+    Route -->|简单问题| Direct[直接调用单个专家]
     Route -->|复杂问题| Multi[进入多大脑对话]
 
-    subgraph MultiBrain [并行多大脑对话（共享框架）]
-        Init[初始化共享框架] --> Pick[随机选择2-3个大脑]
-        Pick --> Loop{循环计数 < 上限?<br>且未收敛}
-        
+    subgraph MultiBrain [并行多大脑对话 共享框架]
+        Init[初始化共享框架] --> Pick[随机选2-3个大脑]
+        Pick --> Loop{循环 <上限?<br>未收敛?}
         Loop -->|是| Parallel[并行调用]
         
-        subgraph ParallelExecution [并行执行]
+        subgraph Workers [ ]
             direction LR
-            B1[大脑A] --> T1[读取框架&生成回答]
-            B2[大脑B] --> T2[读取框架&生成回答]
-            B3[大脑C] --> T3[读取框架&生成回答]
+            A[大脑A] --> A1[调用API]
+            B[大脑B] --> B1[调用API]
+            C[大脑C] --> C1[调用API]
         end
         
-        Parallel --> Sync[同步点：等待所有完成]
-        Sync --> Merge[合并结果 → 更新共享框架]
+        Parallel --> Workers
+        Workers --> Sync[同步点 等待全部完成]
+        Sync --> SafetyMid[安全检测本轮输出]
+        SafetyMid --> Merge[合并结果更新框架]
         Merge --> Loop
     end
-    
-    Loop -->|否| Aggregate[整合最终框架]
-    Aggregate --> Final[最终答案]
-    Final --> End([返回用户])
-    Direct --> End
 
-    subgraph Future [未来可选（暂缓）]
-        Contradiction[矛盾大脑] -.->|检测逻辑冲突<br>介入合并阶段| Merge
-    end
-    ```
-    Future -.- Sync
+    Loop -->|否| Aggregate[整合最终框架]
+    Aggregate --> SafetyOut[安全检测最终输出]
+    SafetyOut --> Final[最终答案]
+    Final --> End([返回用户])
+    Direct --> SafetyOut
+
+    %% 添加三个警示节点，用虚线连接到相关位置
+    Warning1[⚠️ 改进线程池！<br>否则资源爆炸！<br>考虑是否多进程包含多线程] -.-> Parallel
+    Warning2[⏱️ 同步点记录耗时<br>超时则中断循环] -.-> Sync
+    SafetyAll[🔒 安全大脑全覆盖<br>（输入/中间/输出）] -.-> SafetyIn
+    SafetyAll -.-> SafetyMid
+    SafetyAll -.-> SafetyOut
