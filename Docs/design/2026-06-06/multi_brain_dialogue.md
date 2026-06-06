@@ -1,4 +1,5 @@
-```flowchart TD
+```mermaid
+flowchart TD
     Start([用户问题]) --> SafetyIn[安全大脑检测输入]
     SafetyIn --> Route{路由 & 分层}
     Route -->|简单问题| Direct[直接调用单个专家]
@@ -35,4 +36,4 @@
     SafetyAll[🔒 安全大脑全覆盖<br>（输入/中间/输出）] -.-> SafetyIn
     SafetyAll -.-> SafetyMid
     SafetyAll -.-> SafetyOut
-    ```
+ ```
