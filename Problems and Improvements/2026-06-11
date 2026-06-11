@@ -1,0 +1,56 @@
+今日状况：
+构思下一步计划。
+我认为目前的MVP应该分两个方向。
+ 1：体现MVP的核心价值 
+2：优化MVP的功能
+属于1的部分应该是，总监价值，多大脑对话，安全大脑的utf-8底层嵌入（根据实际情况放到后面部分），自我检测+微量检修功能，矛盾大脑，记忆样式区分（这个应该不难，而且在用户端体验上应该没区别），安全覆盖
+属于2的部分应该是：优化输出逻辑，用户提问联想。敏感词更新，线程池改造。 
+然后在1的部分选择一个最底层的，我认为应该是记忆样式区分，区别不同种类的记忆文件，因为多大脑要真正的对话，在我们的架构中，是基于记忆框架以上的，所以要先生成框架，再构造对话
+那么问题来了，构造多大脑对话，也有几种路径
+1：先让两个大脑互相对话，确定对话有效，然后再生成记忆文本，产生记忆框架，进行下一阶段尝试
+2：先构造记忆框架，让两个大脑直接在里面能看到‘自己的回答’，’对方的回答‘，’看到问题‘。
+1和2的对话模式，单独面向对方的回答，和已知全部信息的对话，是不同的方向，从人的角度来说，人会天然的记住自己的观点，对方的观点，以及问题，但是AI不会，并且会有依附性，所以我还是认为从模式上就要做更改
+然后这样的话，提示词会不会很长，很难以确定？
+提示词的问题我还没完全想好，但我感觉其实并不难实现，一个对话框，标题是问题，左边是你的发言，右边是我的发言，这就能一次都看到了啊，每次参考的提示词，就是之前对话的历史文本，在MVP阶段，这根本不怕内存爆炸，并且可以限制对话轮次上限，所以我认为，直接用 提示词=文本内容 都OK。
+然后是，如果按这个模式走下去的话，万一以后会给多用户使用，那我觉得有两个方面：
+1.多用户使用要区分不同的历史对话文本，改造前就需要提前留接口，并且，以后的内存需求一定是线性增长的，所以日后一定要微服务化，只是目前不需要，MVP阶段，模块化就好。
+2.这个搞法，一旦里面任意一点炸了，那就全炸了，当前阶段体量小，爆炸的概率应该不大，但是考虑工程化的方向的话，那多线程应该不行，以后线程池一定要改，至于怎么改，那是后面工程化的事情了。
+3.响应时间，涉及到多轮对话，固定的响应时间应该不行，或许可以这样设置，在需要这样专家大脑互相对话的模式里，问题一定是不算太简单的，那就可以设置两个响应时间，一个是响应时间上限，一个是响应时间剩余（比如10s）
+
+下一步计划：
+1.尝试构造不同的记忆样式（全局记忆，用户记忆，专家对话记忆等等）
+2.把各个预留接口给补上
+3.对话尝试,调用的为每次的历史文本
+ps：或许也可以换个思路，先增加第三个API以及专家，直接从随机调用开始，以免日后返工，不过先考虑一下。
+
+------------------------------------------------------------------------------------------------------------------------
+Today's Status: Planning the Next Steps
+I think the current MVP should be split into two directions:
+
+1. Core value of the MVP
+2. Optimization of MVP features
+
+Items belonging to 1 (Core value):
+Director value, multi‑brain dialogue, low‑level UTF‑8 embedding of the safety brain (to be placed later depending on the situation), self‑detection + minor repair, contradiction brain, memory style differentiation (should not be difficult, and the user experience won’t see a difference), safety coverage.
+
+Items belonging to 2 (Optimization):
+Optimize output logic, user query association, sensitive word updates, thread pool improvement.
+
+Among the core value items, I think the most fundamental one to do first is memory style differentiation – distinguishing different types of memory files. Because for a true multi‑brain dialogue, in our architecture, it’s built on top of a memory framework. So we need to generate the framework first, then construct the dialogue.
+Now the question: there are several paths to construct multi‑brain dialogue.
+Path 1: First let the two brains talk to each other, confirm that the dialogue is effective, then generate memory text, create the memory framework, and move to the next stage.
+Path 2: First construct the memory framework, so that both brains can directly see “their own answer”, “the other’s answer”, and “the question” inside it.
+These two dialogue modes – answering only the other’s response vs. having all information known in advance – are different directions. From a human perspective, humans naturally remember their own viewpoint, the other’s viewpoint, and the question. But AI does not, and it also has a tendency to be conformist. Therefore, I still believe the change must be made at the pattern level.
+Would the prompt become too long and difficult to manage?
+I haven’t fully figured out the prompt yet, but I feel it’s actually not hard to implement. One dialogue box, title = question, left side = your speech, right side = my speech – this way everything is seen at once. Each reference prompt would simply be the conversation history text. In the MVP phase, we are not afraid of memory explosion at all, and we can limit the number of dialogue rounds. So I think it’s okay to just use prompt = text content.
+Now, if we go down this route and later need to serve multiple users, I see a few aspects:
+Multi‑user isolation – We need to distinguish different conversation histories, so we must leave an interface in advance. Also, memory requirements will grow linearly, so we will definitely need microservices in the future. For now, not needed – modularization is enough for the MVP phase.
+Stability (one point of failure) – With this approach, if any single part explodes, everything explodes. Currently the scale is small, so the probability is low. But from an engineering perspective, multi‑threading may not be enough; the thread pool will have to be changed later. How to change it – that’s a matter for later engineering.
+Response time – Multi‑round dialogue means a fixed timeout may not work. Perhaps we can set two response times: one for the upper limit, and another for the remaining time (e.g., 10 seconds). In scenarios where expert brains need to talk to each other, the question is certainly not trivial.
+
+Next steps:
+1.Try to implement different memory styles (global memory, user memory, expert conversation memory, etc.)
+2.Fill in the interface placeholders.
+3.Experiment with dialogue using the entire history text each time.
+
+P.S. Maybe we could also consider adding a third API and a third expert first, starting with random invocation to avoid rework later. But I’ll think about it.
