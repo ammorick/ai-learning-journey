@@ -29,8 +29,12 @@ This project is my first real AI system, built from scratch starting May 24, 202
 任何建议、批评或讨论都欢迎提 Issue 或 PR。感谢你的关注！
 
 <<<<<<< HEAD:README.md
+<<<<<<< HEAD:README.md
 - 本仓库代码（所有 `.py` 文件）采用 [MIT 许可证](https://opensource.org/licenses/MIT)。
 - 设计文档、草稿图等非代码内容采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)（署名‑非商业性使用）。
+=======
+
+>>>>>>> f2e8d406a22b780828f7c1bb0d5bea78f1de1992:README
 =======
 
 >>>>>>> f2e8d406a22b780828f7c1bb0d5bea78f1de1992:README
