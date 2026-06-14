@@ -27,3 +27,9 @@ This project is my first real AI system, built from scratch starting May 24, 202
 晚上我跑外卖，其余时间学习编程。这个项目是我第一个真正的 AI 系统——自2026-5-24开始搭建，源于对 AI 安全与多智能体架构的热爱。
 
 任何建议、批评或讨论都欢迎提 Issue 或 PR。感谢你的关注！
+
+
+许可证
+本仓库代码（所有 .py 文件）采用 MIT 许可证。
+
+设计文档、草稿图等非代码内容采用 CC BY-NC 4.0（署名‑非商业性使用）。
