@@ -1,0 +1,39 @@
+当前状况：
+
+最近在补我的短板，一直在学python基础，同时在慢慢整理我的另一个仓库，那里记录着一些未来的想法---Future-exploration-direction.to-be-sorted。
+另外我原本是打算下一步是做UTF-8转义+底层嵌入的。
+关于为什么这么选，是那天刷视频，刷到英文电影了，我想着这中英文转化的时候一定会有误差的，只是大意是相同的，但确实还是有点容易产生'歧义'。
+所以我想着，那就用个全都通用的语言呗----UTF-8的转义方案就来了。虽然也会有误差，但我认为这个应该比各类语言转化后识别是更精确的。
+因为我想着：如果是用中文来定义安全词，那其他语言就会转化成中文后再筛选，那一定会有歧义的，那不如直接转UTF-8就好，剩一道转化过程，减少出现歧义概率。
+安全过滤应当尽量在原始输入空间进行，避免不必要的语言转换带来的歧义累积。
+
+然后就是底层嵌入的问题了。做好计划后，我就开始学习目前行业内的一些"底层嵌入"的逻辑，想看看以后我要怎么去做。
+但是学习时发现，目前行业内的"底层嵌入"和我想的"底层嵌入"不一样。
+举个例子：一块地皮，上面可以修房子，修围栏，修防盗栏，修牧场，修....等等，目前的安全方式更像是'围栏'，'防盗栏'一类的，我认为的底层应该是，那一块'地皮'
+得，这下感觉暂时不能进行这一步了，能力离这个计划太遥远了。需要变成长期计划了。
+
+
+
+---------------------------------------------------------------------
+Current Status:
+
+Lately I've been filling my gaps, constantly learning Python basics, while slowly organizing another repository where I record some future ideas — Future-exploration-direction.to-be-sorted.
+
+Originally, my next step was going to be UTF-8 escaping + low‑level embedding.
+
+Why this choice? The other day I was watching a video with an English movie, and I thought — when converting between Chinese and English there are always errors.
+The general meaning is the same, but there is still some potential for ambiguity.
+
+So I thought: why not use a universal language? That’s how the UTF-8 escaping idea came about. Even though there will still be some inaccuracies, I believe this is more precise than recognition after converting between languages.
+
+Because I thought: if I define safety keywords in Chinese, then other languages would be converted to Chinese before filtering — that would definitely introduce ambiguity.
+So why not just convert directly to UTF‑8, skipping one conversion step and reducing the chance of ambiguity.
+Safety filtering should be performed as much as possible in the original input space, avoiding unnecessary language conversions that accumulate ambiguity.
+
+Then there’s the problem of low‑level embedding. After making my plan, I started learning about the current industry's concept of "low‑level embedding" to see how I would implement it later.
+
+But during my studies I discovered that the industry's "low‑level embedding" is not the same as what I had in mind.
+
+For example: a plot of land where you can build houses, fences, security doors, pastures, etc. Current security methods are more like "fences" and "security doors". What I consider truly "low‑level" is the land itself.
+
+Well… now I feel I can't proceed with this step for the time being. My ability is still too far from this plan. It will have to become a long‑term project.

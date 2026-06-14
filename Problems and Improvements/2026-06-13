@@ -1,0 +1,134 @@
+今日进展：
+成功实现了多大脑对话，给记忆大脑预留了多用户的接口，小小的更新了一下API1.PY里的timeou机制，但还没完善。
+虽然失败了很多次，也明显能看到还有很多地方可以优化，不过今天太晚了，明天再继续
+
+过程：
+首先是思考这部分要怎么去做，当时考虑了一下大概有以下几个方面：
+dispatcher：
+是单独做个模块处理？还是再做一个大脑？
+提示词区分？本是还是对于模式区分的改造
+多专家考虑，和多专家对话，放进同一个线程池？做区分？future_to_exp+sprak_to_exp？
+如果需要做两种，一种是新增一个处理大脑，另一种是直接在已有的线程池里做改进
+选择哪种呢？改动或许会影响的有：
+1。会不会影响到日后的线程池模式更改
+2。是否过度拆分，其他大脑的调用索引导向更复杂
+3。ThreadPoolExecutor下包容另一个函数也行
+4。汇总的引入，可以减少summarize的复杂程度，也可做分类匹配，这方面算是新增模块比较优质
+5。稳定性，日后会不会在两者模式切换中产生其他问题
+6。关于不同类型的记忆文本的分类保存，以及价值识别（未来），单从这一方面来讲，似乎用ThreadPoolExecutor的包容就足以
+7。安全大脑的监测，这是  少而杂VS多而简洁 的比较。暂时无法比较
+目前或许不应该过度设计，MVP阶段直接在ThreadPoolExecutor下包容新的函数就好
+
+api的timeout的时间模式更改
+uesr_input的接口预留，也做类型区分
+转义为question为memory的引入留个准备
+
+谈谈历程吧，做的时候其实失败了很多次，包括初次写这类架构，不熟练，查了很多资料。
+完成之后，初次跑动，我提问：感冒请假被拒绝。似乎只看得到一个通用专家的总结，并未看到专用专家的讨论。
+所以现在不确定的有两点：
+1。没有讨论
+2。讨论了但是被通用专家汇总了
+要验证的话，就要先看看他们第一轮讨论后的结果是什么，也就是记忆文件中没有记载的部分
+于是先看了一下记忆文件，里面也没有讨论内容。。
+想着是不是程序写的不对，但是转头一想，或许也有可能是讨论了但是没有记录。
+于是在dispatcher的def get_experts_answers(question,max_rounds=3):里面加了一个测试
+print("\n" + "="*50)
+print("专家讨论完整记录：")
+for i, log in enumerate(discussion_log, 1):
+    print(f"第{i}轮：")
+    for exp, ans in log.items():
+        print(f"  {exp}: {ans[:200]}...")  # 只打印前200字符
+print("="*50 + "\n")
+这个加入后，再试着跑动程序，看到有专家在讨论了！但是只有一个医疗专家
+猛地惊醒，又去看了一下我的keyword。确实，这里出问题了，law专家只有["法律", "合同", "权益", "官司"]，没有”请假”，所以没能触发law
+加上关键词后再次跑一遍
+这次成功跑通了！
+完美的看到医学和法律专家已经能基于对方上一轮的回答进行补充、反驳、再补充，最终汇总出兼顾健康和法律的建议。
+太好了，这部分总算是实现了。
+不过确实看得出来还有一系列明显的问题
+留给明天吧！
+
+下步计划：
+优化多大脑对话中的杂项属性。
+
+------------------------------------------------------------------------------------
+
+
+
+**Today's Progress:**
+
+Successfully implemented multi‑brain dialogue, reserved multi‑user interfaces for the memory brain, and made a small update to the timeout mechanism in `api1.py` (not fully polished yet).  
+Although it failed many times and there are clearly many areas that can be optimized, it's too late today – I'll continue tomorrow.
+
+---
+
+**Process:**
+
+First, I thought about how to implement this. The main considerations were:
+
+**dispatcher:**  
+- Should I make a separate module? Or create another brain?  
+- Prompt differentiation? Is it about mode separation?  
+- Multi‑expert parallel and multi‑brain dialogue – put them in the same thread pool? Differentiate? `future_to_exp + spark_to_exp`?  
+- Two options: add a new processing brain, or improve directly inside the existing thread pool.  
+- Which one to choose? Potential impacts:  
+  1. Will it affect future thread pool mode changes?  
+  2. Over‑modularisation – could make routing for other brains more complex.  
+  3. Wrapping another function inside `ThreadPoolExecutor` is possible.  
+  4. Introducing aggregation could reduce the complexity of `summarizer` and enable classification matching – this would be a good new module.  
+  5. Stability – might cause issues when switching between two modes in the future.  
+  6. Saving different types of memory text and value recognition (future). From this perspective, simply wrapping inside `ThreadPoolExecutor` is enough.  
+  7. Monitoring for the safety brain – a trade‑off between “few but messy” vs “many but clean”. Not comparable yet.  
+
+**Conclusion:** For MVP stage, avoid over‑engineering – just wrap the new function inside `ThreadPoolExecutor`.
+
+**API timeout** – change the timeout mechanism.  
+**`user_input` interface** – reserve a slot for type differentiation.  
+**Prepare for memory injection** – leave room for transforming the question.
+
+---
+
+**Journey:**
+
+There were many failures during implementation. It was the first time writing this kind of architecture – I was not familiar and had to look up a lot of information.
+
+After finishing, I ran it for the first time and asked: *“I have a cold and my sick leave was denied.”*  
+I only saw a general‑expert summary – no specialised experts discussion.  
+
+So there were two uncertainties:  
+1. No discussion happened.  
+2. Discussion happened but was overwritten by the general expert’s summary.  
+
+To verify, I needed to see what the experts said in the first round – the part not recorded in the memory file.  
+
+First I checked the memory file – no discussion content.  
+
+I wondered if the code was wrong, but then thought: maybe the discussion did happen but was not logged.  
+
+So in `get_experts_answers(question, max_rounds=3)` inside `dispatcher.py`, I added a test print:  
+
+print("\n" + "="*50)
+print("专家讨论完整记录：")
+for i, log in enumerate(discussion_log, 1):
+    print(f"第{i}轮：")
+    for exp, ans in log.items():
+        print(f"  {exp}: {ans[:200]}...")  # 只打印前200字符
+print("="*50 + "\n")
+
+With this, I ran the program again and saw that the experts *were* discussing – but only the medical expert appeared.  
+
+A sudden realisation: I checked my keywords. Indeed, the `law` keywords were `["法律", "合同", "权益", "官司"]` – missing `“请假”`. So the legal expert was never triggered.  
+
+After adding `“请假”` to the law keywords, I ran it again.  
+
+**This time it worked perfectly!**  
+The medical and legal experts successfully supplemented, rebutted, and complemented each other based on the previous round’s answers, and the final summary combined both health and legal advice.  
+
+Great – this part is finally implemented.  
+
+Clearly there are still many issues – I’ll leave them for tomorrow.
+
+---
+
+**Next steps:**  
+Optimise miscellaneous attributes inside the multi‑brain dialogue.
