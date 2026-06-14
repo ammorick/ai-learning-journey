@@ -1,13 +1,18 @@
 # Multi-Expert Q&A System / 多专家问答系统
+
 >约2025-06时，初次接触到Agent，当时听课，Agent的结构大概：接受信息→大脑调动工具→使用工具得出结果→反馈给用户并放入记忆模块。当时我就好奇，为啥不能设计两个大脑让他们对话呢，随后就冒出来许多特别的想法。不过当时没有机会去实践。
+>
 >Around June 2025, I was first introduced to the concept of an Agent. The typical architecture at that time was: receive input → the brain calls tools → uses the tools to get results → returns feedback to the user and saves it to memory.
 >I became curious: why can't we have two brains that talk to each other? 
 >That question sparked many unexpected ideas. Unfortunately, I had no opportunity to put them into practice back then.
 
 >现在终于可以开始行动了。考虑过后，我选择了这个模型作为我的第一个MVP，一个并行调用多专家大脑、具备安全过滤、记忆对话和答案汇总功能的 Python AI 助手。
+>
 >Now, I finally can start building.
 >After careful consideration, I chose this model as my first MVP: a Python AI assistant that calls multiple expert brains in parallel, with safety filtering, conversation memory, and answer summarization.
+>
 ⚠️ **Work in Progress** – This project is actively evolving.  
+
 ⚠️ **持续开发中** – 本项目正在不断演进。
 
 ## 📖 Documentation
