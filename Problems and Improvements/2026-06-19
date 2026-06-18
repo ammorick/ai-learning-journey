@@ -1,0 +1,69 @@
+今日进展：
+今天将专家的keywords改为了外部json，增加了第三个专家大脑以及API。
+整体没什么大问题，在整理成json时也相当于重新复习了一遍全局变量和环境变量的区别。
+也确实犯了一些错误，最初的json直接medical_keywords=[]，写到后面才反应过来，这样对着值输出的键是medical_keywords，而不是medical专家。
+整体结构删删改改，查漏补缺，原本对于json中general的编辑中，我想了会儿，keywords到底用空集，还是直接不要keywords？
+我是担心如果加keywords的空列表，那是否每次历遍时都会选取到general呢？比如明明只需要两个专家大脑，但是每次历遍时还是加载了一个general。
+不过经过学习，也算是明白了里面的具体流程，general 用一个空列表，不会导致它每次都被选中。它只是不参与关键词匹配，只做最后的兜底。
+经测试，双大脑对话成功跑通，功能正常。
+接下来是加入第三个专家，我选择了策略专家。
+跑失败了，翻来覆去看了好一会儿没看出什么毛病来。
+于是就把对话轮次改为1，然后在 dispatcher.py 的 get_experts_answers 开头加上：
+print("max_rounds:", max_rounds)
+在 expert_list = route(question) 后加上：
+print("专家列表:", expert_list)
+在 except Exception as e: 中加上：
+print(f"调用{exp}失败: {e}")
+想看看是哪个环节有问题
+这一测还真测出来了，调用API失败。
+我的老天爷啊
+我环境变量文件里留的是XXXX_API_KEY，我索取环境变量文件中的KEY时写的XXXXX，漏写了_API_KEY
+这种明显的问题我居然也没看到，长个教训了。
+不过对于这类找不出明显缺点的办法，还是在关键位置加打印比较好，可以明显的确定是哪个环节出了问题，再去做对照修改。
+
+好了，今天就到这里了。
+
+下一步计划：
+1。记忆分离
+2。总监汇总优化
+3。timeout的逻辑确定
+三选一吧，还没明确选好下一步
+
+-----------------------------------------------------------------------------------------------------
+Today's Progress:
+
+Today, I moved all expert keywords into an external JSON config and added a third expert brain with its own API.
+No major issues overall. Organizing everything into JSON also gave me a good chance to review the difference between global variables and environment variables.
+
+I did make some mistakes along the way.
+In my first version, I wrote the JSON like this: medical_keywords = [...]. It wasn't until later that I realized this structure would return the key name "medical_keywords" itself, not the expected expert name "medical". So I redesigned it.
+
+I also spent some time thinking about how to handle the "general" expert in the JSON file — should I give it an empty list for keywords, or omit the keywords field entirely?
+I was worried that if I gave it an empty list, the routing logic might accidentally pick "general" every time it iterated through all experts, even when only two specialists were needed.
+But after testing, I confirmed that with an empty keyword list, "general" is only used as a fallback when no other expert matches the query. It doesn't get triggered every loop. This was a good lesson in how the routing actually works.
+
+After testing, I confirmed that dual‑expert dialogue is running fine.
+
+Next, I added a third expert — a strategy expert.
+But it failed to run. I looked over the code multiple times and couldn't spot the problem.
+
+So I reduced the dialogue rounds to 1 and added several debug prints:
+- print("max_rounds:", max_rounds) right at the top of get_experts_answers
+- print("专家列表:", expert_list) after the route call
+- and a print inside the exception handler: print(f"调用{exp}失败: {e}")
+
+The debug output immediately pointed me to the real issue — the API call was failing.
+
+My god.
+
+I checked the environment variables and realized I had written the variable name as "XXXXX" instead of "XXXXX_API_KEY" — the actual key name stored in the .env file.
+Such an obvious mistake, and I missed it. Lesson learned.
+
+One thing this experience reinforced: when you can't find the root cause, adding prints at key checkpoints is the fastest way to isolate the problem. It helps you see exactly which step fails, and then you can fix it with confidence.
+
+That’s it for today.
+
+Next steps (3 options, haven't decided which one yet):
+1. Separate memory for user history vs expert discussion logs
+2. Optimize the supervisor’s summarization output (shorter, more structured)
+3. Finalize the timeout logic for multi‑round dialogues
