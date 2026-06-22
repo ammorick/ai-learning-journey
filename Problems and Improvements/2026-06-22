@@ -1,0 +1,75 @@
+今日进展：
+
+给MVP增加了随机多大脑对话功能。
+
+我的MVP的选取，是为了服务于构思想法的形成的最基础。
+目前做的随机多大脑对话功能，也是服务于未来各个专家小脑随机互交，可能产生人类认知以外的知识。
+整体的设计草图在docs/random中。
+初次实现后，我很兴奋，跑了一下程序，发现不及我理想中的质量。
+他们确实对话了，也确实交流观点了，但是本质上是在每一轮都继续输出自己的想法，而非讨论。
+于是我修改提示词，强调了交叉行业，以及不同行业"之间"，结果确实比第一版更好，但是好的有限。
+我再次修改提示词，这次做了明确要求，输出自己的观点，认真分析自己的观点和对方的观点是否存在一些未知的可能性，基于这个可能性再去互相探讨，再互相辩论，收敛。
+这次改动后，讨论质量有大提升，能明显的感觉到各个专家在认真考虑自己提出的方向和对方的方向是否有交叉点、应该怎么去做、缺什么。等等
+第三版目前来说算是基本上实现了核心功能。
+不过缺点依然很明显：
+1。提示词目前还是硬编码，这个是肯定不行的，如果在第二轮就讨论出了确实有价值的结果，又在第三轮强行辩论收敛，那就是反向优化。
+2。两个专家讨论时还好，第三个专家参与进来时，明显感觉到调试速度变慢了。
+3。总监大脑的最终整理输出----这部分我觉得属于优化体验，暂捕不属于核心功能的实现。
+4。线程池模式，目前还是使用的单线程池，因为觉得目前专家数只有3个，不超过5个时单线程池没问题，但是日后如果开放到用户端估计不行，所以感觉还是要改。
+5。目前还没有生成总监大脑对讨论内容的价值的确认，这个太依赖价值体系了，暂时不要碰。
+6。安全模块的接入，还没有实现，涉及到另一个工作理念。
+。。。。。。。。
+还有很多
+
+不过慢慢来吧，今天熬太狠了。
+从下班开始，到画草图，到写代码，到调试，到跑通，然后简单的编写了两份推广文，干了我九个多小时，再加上跑外卖的工作时间，太累了今天，干完就直接昏迷过去了。
+睡醒了才补的这份日志
+
+下一步计划：
+暂未决定
+
+----------------------------------------------------------------------------------------
+Today's Progress:
+
+Added a random multi‑brain dialogue feature to the MVP.
+
+The MVP itself was built as a foundation to support the formation of the core ideas. The random multi‑brain dialogue feature I just added is also aimed at a longer‑term direction — where multiple expert brains interact randomly and potentially generate knowledge beyond what we currently know.
+
+The overall design sketch is in docs/random/.
+
+After the first implementation, I was excited. I ran it — and found it wasn't quite what I had hoped for.
+
+They did talk. They did exchange views. But essentially, each expert kept outputting their own direction in every round — it wasn't really a discussion.
+
+So I revised the prompts — emphasized cross‑industry, and the space between different industries. The second version was better than the first, but only marginally.
+
+I revised the prompts again. This time, I made it explicit: each expert should state their own position, then seriously examine whether their direction and the other expert's direction share any unknown intersection. Based on that, they should explore further, push back, and converge.
+
+After this change, the quality of the discussion improved significantly. You can clearly feel that each expert is actively considering whether their own direction and the other's have any overlap — what's missing, what's needed, and how to move forward.
+
+The third version basically achieved the core functionality.
+
+However, the limitations are still obvious:
+
+Prompts are still hard‑coded — and that won't work long‑term. If a valuable direction emerges in round 2 but gets forced into convergence in round 3, that's reverse optimization.
+
+Two experts worked fine. When I added a third, the response time slowed down noticeably.
+
+The director brain's final synthesis — I consider this an experience optimization, not core functionality, so it's lower priority.
+
+Thread pool: still using a single thread pool per call. With only 3 experts, it's fine — but if the system ever scales to more users, it'll need to change.
+
+I haven't yet implemented director brain validation for the discussion's value — that depends heavily on the value system, so I'm leaving it alone for now.
+
+Safety module integration isn't done yet — it involves a different set of design considerations.
+
+...and many more.
+
+But one step at a time. Today was too much.
+
+From the moment I got off shift — sketching, writing code, debugging, running tests, then quickly drafting two promotion posts — it took over nine hours. On top of the delivery shift. It was too much. I passed out as soon as I finished.
+
+Woke up and wrote this log.
+
+Next Steps:
+Not decided yet.
