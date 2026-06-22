@@ -1,0 +1,24 @@
+
+
+{
+  "experts": [
+    {
+      "num": "001",
+      "name": "medical",
+      "title": "生物学家",
+      "api": "zhipu"
+    },
+    {
+      "num": "002",
+      "name": "law",
+      "title": "材料科学家",
+      "api": "aliyun"
+    },
+    {
+      "num": "003",
+      "name": "strategy",
+      "title": "环境科学",
+      "api": "gpt-oss-120b"
+    }
+  ]
+}
