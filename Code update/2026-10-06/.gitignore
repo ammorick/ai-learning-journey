@@ -1,0 +1,32 @@
+gitignore
+# 环境变量和密钥
+.env
+key.txt
+key1.txt
+
+# 日志和数据库
+*.log
+memory.json
+memory_*.json
+
+# 讨论记录存档（本地测试生成，不提交）
+discussion_archive/
+
+# 随机大脑完整实现（公开仓库中只保留抽离后的版本）
+random_brain.py
+
+# 随机大脑配置文件（包含专家花名册和API绑定）
+config/random_config.json
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE 配置
+.vscode/
+.idea/
+
+# 虚拟环境
+venv/
+env/
